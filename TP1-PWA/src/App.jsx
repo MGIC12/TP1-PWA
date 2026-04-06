@@ -1,7 +1,11 @@
+import Home from "./pages/Home/Home";
+
 function App() {
   return (
     <>
-      <h1>TP1-PWA</h1>
+      <h1>Gestor de Peliculas y Series</h1>
+      <h2>Grupo BacInStu</h2>
+      <Home />
     </>
   );
 }
