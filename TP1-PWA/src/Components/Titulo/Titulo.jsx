@@ -1,7 +1,6 @@
 import React from "react";
 
-export default function Titulo() {
-  const text = "Titulo principal del sitio";
+export default function Titulo({ texto }) {
   return (
     <h1
       style={{
@@ -12,7 +11,7 @@ export default function Titulo() {
         backgroundColor: "lightblue",
       }}
     >
-      {text}
+      {texto}
     </h1>
   );
 }
