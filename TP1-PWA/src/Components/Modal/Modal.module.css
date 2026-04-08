@@ -1,0 +1,139 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+}
+
+.modal {
+  background-color: #ffffff;
+  color: #333333;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 30px;
+  border-radius: 12px;
+  width: 450px;
+  max-width: 90%;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e0e0e0;
+}
+
+.closeButton {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #888888;
+  cursor: pointer;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.closeButton:hover {
+  color: #d9534f;
+}
+
+.modal h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 24px;
+  color: #222222;
+  border-bottom: 2px solid #007bff;
+  display: inline-block;
+  padding-bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 14px;
+  color: #555555;
+}
+
+.form input,
+.form select {
+  padding: 12px 15px;
+  margin-top: 6px;
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  color: #333333;
+  font-size: 15px;
+  font-family: inherit;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    background-color 0.2s;
+}
+
+.form input:focus,
+.form select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+  background-color: #ffffff;
+}
+
+.buttonContainer {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.submitButton {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 100%;
+  font-family: inherit;
+  transition:
+    background-color 0.2s,
+    transform 0.1s;
+}
+
+.submitButton:hover {
+  background-color: #0056b3;
+}
+
+.submitButton:active {
+  transform: scale(0.98);
+}
+
+.row {
+  display: flex;
+  gap: 15px;
+}
+
+/* Media Query para celulares */
+@media (max-width: 500px) {
+  .row {
+    flex-direction: column;
+    gap: 18px;
+  }
+}
