@@ -1,0 +1,31 @@
+/* Etiqueta.module.css */
+
+.etiqueta {
+  display: inline-block;        /* Para que el ancho se ajuste al texto */
+  background-color: #e0e0e0;    /* Un azul muy suave */
+  border: 1px solid #007bff;    /* Un borde azul más intenso */
+  border-radius: 20px;          /* Bordes bien redondeados (estilo píldora) */
+  padding: 4px 12px;            /* Espaciado interno */
+  margin: 5px;                  /* Espaciado externo */
+  transition: all 0.3s ease;    /* Animación suave para el hover */
+}
+
+.etiqueta p {
+  margin: 0;                    /* Quitamos el margen por defecto del <p> */
+  color: #007bff;               /* Texto en azul oscuro */
+  font-family: sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;    /* Texto en mayúsculas para darle estilo */
+  letter-spacing: 0.5px;
+}
+
+/* Efecto opcional para cuando pases el mouse */
+.etiqueta:hover {
+  background-color: #007bff;
+  cursor: pointer;
+}
+
+.etiqueta:hover p {
+  color: white;
+}

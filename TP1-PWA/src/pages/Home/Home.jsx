@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./Home.module.css";
 import Titulo from "../../Components/Titulo/Titulo";
 import Modal from "../../Components/Modal/Modal";
+import Etiqueta from "../../Components/Etiqueta/Etiqueta";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,6 +18,10 @@ export default function Home() {
         </button>
 
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      </div>
+      <div>
+        <Etiqueta nombre="Ejemplo de etiqueta" /> 
+        <Etiqueta nombre="Otra etiqueta" />
       </div>
     </>
   );
