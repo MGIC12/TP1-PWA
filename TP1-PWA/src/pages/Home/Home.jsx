@@ -23,6 +23,9 @@ export default function Home() {
         <Etiqueta nombre="Ejemplo de etiqueta" /> 
         <Etiqueta nombre="Otra etiqueta" />
       </div>
+      <div>
+        <Boton texto="Click!" />
+      </div>
     </>
   );
 }
