@@ -3,9 +3,12 @@ import styles from "./Home.module.css";
 import Titulo from "../../Components/Titulo/Titulo";
 import Modal from "../../Components/Modal/Modal";
 import Etiqueta from "../../Components/Etiqueta/Etiqueta";
+import Boton from "../../Components/Boton/Boton";
+import BarraBusqueda from "../../Components/BarraBusqueda/BarraBusqueda";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [resultados, setResultados] = useState([]);
   return (
     <>
       <div>
@@ -22,6 +25,17 @@ export default function Home() {
       <div>
         <Etiqueta nombre="Ejemplo de etiqueta" /> 
         <Etiqueta nombre="Otra etiqueta" />
+      </div>
+      <div>
+        <Boton texto="Click!" type="button" />
+      </div>
+      <div>
+        <BarraBusqueda />
+        <ul>
+          {resultados.map( (item,index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
       </div>
     </>
   );
