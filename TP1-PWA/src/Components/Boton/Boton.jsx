@@ -1,5 +1,5 @@
 import React from 'react';
-import './Boton.module.css';
+import styles from './Boton.module.css';
 
 export default function Boton( {texto, onClick, tipo="button"} ) {
     return (

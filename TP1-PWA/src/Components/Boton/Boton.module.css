@@ -3,8 +3,8 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    background-color: #0d6efd;
-    color: white;
+    background-color: #007bff;
+    color: #e0e0e0;
     padding: 12px 24px;
     border: none;
     border-radius: 8px;
@@ -15,5 +15,6 @@
   }
   
 .boton:hover{
-    background-color: rgb(154, 159, 165)
+    background-color: #e0e0e0;
+    color: #007bff;
 }
