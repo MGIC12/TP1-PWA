@@ -3,6 +3,7 @@ import styles from "./Home.module.css";
 import Titulo from "../../Components/Titulo/Titulo";
 import Modal from "../../Components/Modal/Modal";
 import Etiqueta from "../../Components/Etiqueta/Etiqueta";
+import Boton from "../../Components/Boton/Boton";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
