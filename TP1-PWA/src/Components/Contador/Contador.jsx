@@ -34,14 +34,12 @@ export default function Contador({ titulo, items = [] }) {
         <div className={styles.estadisticasContainer}>
           <div className={styles.grupoBadges}>
             {Object.entries(conteoPorTipo).map(([tipo, cantidad]) => (
-              /* 2. Reutilizamos la Etiqueta pasándole el texto combinado */
               <Etiqueta key={tipo} nombre={`🎬 ${tipo}: ${cantidad}`} />
             ))}
           </div>
 
           <div className={styles.grupoBadges}>
             {Object.entries(conteoPorGenero).map(([genero, cantidad]) => (
-              /* 3. Reutilizamos la Etiqueta para los géneros */
               <Etiqueta key={genero} nombre={`${genero}: ${cantidad}`} />
             ))}
           </div>
