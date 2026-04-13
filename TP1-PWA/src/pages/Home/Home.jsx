@@ -1,16 +1,35 @@
 import React, { useState } from "react";
 import styles from "./Home.module.css";
 import Modal from "../../Components/Modal/Modal";
-import Etiqueta from "../../Components/Etiqueta/Etiqueta";
 import Boton from "../../Components/Boton/Boton";
 import BarraBusqueda from "../../Components/BarraBusqueda/BarraBusqueda";
+import Contador from "../../Components/Contador/Contador";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [vistas, setVistas] = useLocalStorage("lista-vistas", []);
+  const [porVer, setPorVer] = useLocalStorage("lista-por-ver", []);
 
-  const handleSearch = (query) => {
-    console.log("Buscando:", query);
+  const handleGuardarItem = (nuevoItem) => {
+    if (nuevoItem.estado === "vista") {
+      setVistas([...vistas, nuevoItem]);
+    } else {
+      setPorVer([...porVer, nuevoItem]);
+    }
   };
+
+  const filtrarItems = (lista) => {
+    return lista.filter(
+      (item) =>
+        item.titulo.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.director.toLowerCase().includes(searchQuery.toLowerCase()),
+    );
+  };
+
+  const vistasFiltradas = filtrarItems(vistas);
+  const porVerFiltrados = filtrarItems(porVer);
 
   return (
     <div className={styles.homeContainer}>
@@ -23,7 +42,7 @@ export default function Home() {
         />
 
         <div className={styles.searchWrapper}>
-          <BarraBusqueda onSearch={handleSearch} />
+          <BarraBusqueda onSearch={(q) => setSearchQuery(q)} />
         </div>
 
         <Boton
@@ -46,43 +65,51 @@ export default function Home() {
           title="Filtros"
         />
       </div>
-
-      <div className={styles.tagsContainer}>
-        <Etiqueta nombre="Animación" />
-        <Etiqueta nombre="Acción" />
-      </div>
-
-      {/* Tablero con columnas */}
       <div className={styles.board}>
-        {/* Columna vistas */}
+        {/* Columna de Vistas */}
         <div className={styles.column}>
           <div className={styles.columnHeader}>
-            <h2>Vistas</h2>
-            <span className={styles.badge}>1</span> (Falta el contador)
+            <Contador titulo="Vistas" items={vistasFiltradas} />
           </div>
+
           <div className={styles.columnContent}>
-            <p className={styles.placeholder}>
-              [ Tendría que ir el componente Tarjeta ]
-            </p>
+            {vistasFiltradas.length === 0 ? (
+              <p className={styles.placeholder}>No hay contenido visto</p>
+            ) : (
+              vistasFiltradas.map((item) => (
+                <div key={item.id} className={styles.itemTemp}>
+                  {item.titulo} ({item.anio})
+                </div>
+              ))
+            )}
           </div>
         </div>
 
-        {/* Columna por ver */}
+        {/* Columna de Por Ver */}
         <div className={styles.column}>
           <div className={styles.columnHeader}>
-            <h2>Por Ver</h2>
-            <span className={styles.badge}>0</span> (Falta el contador)
+            <Contador titulo="Por Ver" items={porVerFiltrados} />
           </div>
+
           <div className={styles.columnContent}>
-            <p className={styles.placeholder}>
-              [ Acá tendría que ir el componente EstadoVacio ]
-            </p>
+            {porVerFiltrados.length === 0 ? (
+              <p className={styles.placeholder}>No hay contenido por ver</p>
+            ) : (
+              porVerFiltrados.map((item) => (
+                <div key={item.id} className={styles.itemTemp}>
+                  {item.titulo} ({item.anio})
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>
 
-      {/* Modal */}
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSave={handleGuardarItem}
+      />
     </div>
   );
 }
