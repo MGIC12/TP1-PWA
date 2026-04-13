@@ -2,8 +2,19 @@ import React from "react";
 import styles from "./Modal.module.css";
 import Boton from "../Boton/Boton";
 
-export default function Modal({ isOpen, onClose }) {
+export default function Modal({ isOpen, onClose, onSave }) {
   if (!isOpen) return null;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const nuevoItem = Object.fromEntries(formData.entries());
+
+    nuevoItem.id = Date.now();
+
+    onSave(nuevoItem);
+    onClose();
+  };
 
   return (
     <div className={styles.overlay}>
@@ -14,7 +25,7 @@ export default function Modal({ isOpen, onClose }) {
 
         <h2>Nuevo Ítem</h2>
 
-        <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <label>
             Título:
             <input
@@ -74,13 +85,23 @@ export default function Modal({ isOpen, onClose }) {
             </select>
           </label>
 
-          <label>
-            Tipo:
-            <select name="tipo">
-              <option value="pelicula">Película</option>
-              <option value="serie">Serie</option>
-            </select>
-          </label>
+          <div className={styles.row}>
+            <label style={{ flex: 1 }}>
+              Tipo:
+              <select name="tipo">
+                <option value="pelicula">Película</option>
+                <option value="serie">Serie</option>
+              </select>
+            </label>
+
+            <label style={{ flex: 1 }}>
+              Estado:
+              <select name="estado" required defaultValue="por-ver">
+                <option value="vista">Ya la vi (Vistas)</option>
+                <option value="por-ver">Quiero verla (Por Ver)</option>
+              </select>
+            </label>
+          </div>
 
           <div className={styles.buttonContainer}>
             <Boton
