@@ -12,7 +12,7 @@ export default function BarraBusqueda( {onSearch} ){
     
     return(
         <form className={styles.formularioBusqueda} onSubmit={manejoSubmit}>
-            <input classNAme={styles.inputBusqueda} type="text" placeholder= "Buscar" value= {query} onChange= { (e) => setQuery(e.target.value) }/>
+            <input classNAme={styles.inputBusqueda} type="text" placeholder= "Buscar por título o director.." value= {query} onChange= { (e) => setQuery(e.target.value) }/>
             <Boton texto="Buscar" type="submit"/>
         </form>
     )
