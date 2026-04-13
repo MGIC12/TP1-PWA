@@ -3,11 +3,19 @@ import styles from "./Home.module.css";
 import Modal from "../../Components/Modal/Modal";
 import Etiqueta from "../../Components/Etiqueta/Etiqueta";
 import Boton from "../../Components/Boton/Boton";
+import TarjetaContenido from "../../Components/TarjetaContenido/TarjetaContenido";
 import BarraBusqueda from "../../Components/BarraBusqueda/BarraBusqueda";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const contenidoEjemplo = {
+    titulo: "Ejemplo de Contenido",
+    anio: 2021,
+    director: "Director de la tarjeta",
+    colGeneros: ["Acción", "Aventura", "Ciencia Ficción"],
+    rating: 8.5,
+    tipo: "Película"
+  };
   const handleSearch = (query) => {
     console.log("Buscando:", query);
   };
@@ -61,6 +69,7 @@ export default function Home() {
             <span className={styles.badge}>1</span> (Falta el contador)
           </div>
           <div className={styles.columnContent}>
+            <TarjetaContenido objContenido={contenidoEjemplo} />
             <p className={styles.placeholder}>
               [ Tendría que ir el componente Tarjeta ]
             </p>
