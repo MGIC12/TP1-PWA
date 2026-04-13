@@ -1,0 +1,29 @@
+.columna{
+    flex: 1;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+}
+
+.titulo{
+    margin-bottom: 12px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.lista{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.item{
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.empty{
+    color: #888;
+    font-style: italic;
+}
