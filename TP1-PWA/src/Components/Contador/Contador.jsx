@@ -13,7 +13,7 @@ export default function Contador({lista, items = []}) {
     const generos = Object.entries(conteoPorGenero); //[ ["accion",2] , ["drama",1] ...]
     return (
         <div className={styles.contenedor}>
-            <h2 className= {styles.titulo}>Resumen: {lista}</h2>
+            <h3 className= {styles.titulo}>Resumen: {lista}</h3>
             <p className= {styles.total}>Total: {totalLista}</p>
 
             {generos.length === 0 ? (
