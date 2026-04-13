@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Modal.module.css";
+import Boton from "../Boton/Boton";
 
 export default function Modal({ isOpen, onClose }) {
   if (!isOpen) return null;
@@ -82,9 +83,11 @@ export default function Modal({ isOpen, onClose }) {
           </label>
 
           <div className={styles.buttonContainer}>
-            <button type="submit" className={styles.submitButton}>
-              Guardar en la lista
-            </button>
+            <Boton
+              texto={"Guardar"}
+              className={styles.botonDelModal}
+              type="submit"
+            />
           </div>
         </form>
       </div>

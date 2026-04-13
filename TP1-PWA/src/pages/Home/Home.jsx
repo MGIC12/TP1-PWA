@@ -16,14 +16,15 @@ export default function Home() {
         <h1 className={`${styles.centrado} ${styles.titulo}`}>Home</h1>
       </div>
       <div>
-        <button onClick={() => setIsModalOpen(true)}>
-          Botón para abrir el modal
-        </button>
+        <Boton
+          texto="Botón para abrir el modal"
+          onClick={() => setIsModalOpen(true)}
+        />
 
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       </div>
       <div>
-        <Etiqueta nombre="Ejemplo de etiqueta" /> 
+        <Etiqueta nombre="Ejemplo de etiqueta" />
         <Etiqueta nombre="Otra etiqueta" />
       </div>
       <div>
@@ -32,7 +33,7 @@ export default function Home() {
       <div>
         <BarraBusqueda />
         <ul>
-          {resultados.map( (item,index) => (
+          {resultados.map((item, index) => (
             <li key={index}>{item}</li>
           ))}
         </ul>
