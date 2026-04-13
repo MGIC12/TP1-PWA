@@ -1,0 +1,46 @@
+.contenedor {
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+    margin-bottom: 20px;
+  }
+  
+  .titulo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .total {
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
+  
+  .lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .item {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .genero {
+    font-weight: 500;
+  }
+  
+  .valor {
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  .empty {
+    color: #888;
+    font-style: italic;
+  }
+  
