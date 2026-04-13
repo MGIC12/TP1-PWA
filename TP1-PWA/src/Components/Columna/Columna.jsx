@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "";
+import styles from "./Columna.module.css";
 
 export default function Columna({  titulo, items =[], renderItem }) {
     return(
