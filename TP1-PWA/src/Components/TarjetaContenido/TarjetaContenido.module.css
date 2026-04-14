@@ -4,11 +4,13 @@
     padding: 20px;
     box-shadow: 0 4px 10px rgba(224, 222, 101, 0.692);
     max-width: 400px;
+    min-width: 100%;
     font-family: sans-serif;
     display: flex;
     flex-direction: column;
     gap: 8px; /* Espacio uniforme entre filas */
     color: #333;
+    margin: 5px auto;
 }
 
 .contenedor {
@@ -38,6 +40,9 @@
 
 /* Colores específicos para cada acción */
 .btnBorrar {
+    background-image: url(../../../public/trash-x.svg) ;
+    background-repeat: no-repeat;
+    background-position: center;
     background-color: #ffe5e5;
     color: #ff4d4d;
 }
@@ -48,6 +53,9 @@
 }
 
 .btnEditar {
+    background-image: url(../../../public/pencil.svg) ;
+    background-repeat: no-repeat;
+    background-position: center;
     background-color: #e5f0ff;
     color: #007bff;
 }
@@ -57,12 +65,28 @@
     color: white;
 }
 
-.btnVisto {
+.btnVista {
+    background-image: url(../../../public/eye-off.svg) ;
+    background-repeat: no-repeat;
+    background-position: center;
     background-color: #e5ffe5;
     color: #28a745;
 }
 
-.btnVisto:hover {
+.btnVista:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+.btnPorVer {
+    background-image: url(../../../public/eye.svg) ;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #e5ffe5;
+    color: #28a745;
+}
+
+.btnPorVer:hover {
     background-color: #28a745;
     color: white;
 }
