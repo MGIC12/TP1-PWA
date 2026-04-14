@@ -1,0 +1,167 @@
+.TarjetaContenido {
+    background-color: #444444;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(224, 222, 101, 0.692);
+    max-width: 400px;
+    min-width: 100%;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Espacio uniforme entre filas */
+    color: #333;
+    margin: 5px auto;
+}
+
+.contenedor {
+    display: grid;
+    grid-template-columns: 85% 15%;
+}
+
+.acciones {
+    display: flex;
+    flex-direction: column; /* Alineación vertical */
+    gap: 8px; /* Espacio entre botones */
+    margin-left: 15px;
+}
+
+.acciones button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 8px; /* O 0 si los quieres totalmente cuadrados */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1.2rem;
+}
+
+/* Colores específicos para cada acción */
+.btnBorrar {
+    background-image: url(../../../public/trash-x.svg) ;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #ffe5e5;
+    color: #ff4d4d;
+}
+
+.btnBorrar:hover {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.btnEditar {
+    background-image: url(../../../public/pencil.svg) ;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #e5f0ff;
+    color: #007bff;
+}
+
+.btnEditar:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.btnVista {
+    background-image: url(../../../public/eye-off.svg) ;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #e5ffe5;
+    color: #28a745;
+}
+
+.btnVista:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+.btnPorVer {
+    background-image: url(../../../public/eye.svg) ;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #e5ffe5;
+    color: #28a745;
+}
+
+.btnPorVer:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Contenedor para Título y Año */
+.encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.encabezado h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #eee;
+}
+
+.anio {
+    font-size: 0.9rem;
+    color: #fff;
+    font-weight: bold;
+}
+
+.director {
+    margin: 0;
+    font-style: italic;
+    color: #ddd;
+    font-size: 0.95rem;
+}
+
+/* Contenedor de etiquetas */
+.generos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    margin: 8px 0;
+}
+
+
+/* Rating y Tipo */
+.infoInferior {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: bold;
+    margin: 0;
+    color: #ddd;
+}
+
+.tipo {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    background: #f0f0f0;
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: #222;
+    letter-spacing: 1px;
+}
+.tipo:hover {
+    background: #777;
+    color: #f0f0f0;
+    cursor: pointer;
+}
+
+.svg {
+    /* Ajuste fino para el icono */
+    vertical-align: middle;
+}

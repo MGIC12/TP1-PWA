@@ -4,6 +4,7 @@ import Modal from "../../Components/Modal/Modal";
 import Boton from "../../Components/Boton/Boton";
 import BarraBusqueda from "../../Components/BarraBusqueda/BarraBusqueda";
 import Contador from "../../Components/Contador/Contador";
+import TarjetaContenido from "../../Components/TarjetaContenido/TarjetaContenido";
 import useLocalStorage from "../../hooks/useLocalStorage";
 
 export default function Home() {
@@ -11,6 +12,20 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [vistas, setVistas] = useLocalStorage("lista-vistas", []);
   const [porVer, setPorVer] = useLocalStorage("lista-por-ver", []);
+
+  const handleBorrar = (id, estado) => {
+    const confirmed = window.confirm('¿Seguro que querés eliminar este elemento?');
+    if (!confirmed) return;
+
+    if (estado === "vista") {
+    // Filtramos la lista de 'vistas'
+    setVistas((prev) => prev.filter((item) => item.id !== id));
+  } else {
+    // Filtramos la lista de 'por ver'
+    setPorVer((prev) => prev.filter((item) => item.id !== id));
+  }
+  };
+
 
   const handleGuardarItem = (nuevoItem) => {
     if (nuevoItem.estado === "vista") {
@@ -76,11 +91,20 @@ export default function Home() {
             {vistasFiltradas.length === 0 ? (
               <p className={styles.placeholder}>No hay contenido visto</p>
             ) : (
-              vistasFiltradas.map((item) => (
-                <div key={item.id} className={styles.itemTemp}>
-                  {item.titulo} ({item.anio})
-                </div>
-              ))
+              vistasFiltradas.map((item) => {
+                const objContenido = {
+                  id: item.id,
+                  titulo: item.titulo,
+                  anio: item.anio,
+                  director: item.director,
+                  genero: item.genero,
+                  rating: item.rating,
+                  tipo: item.tipo,
+                  estado: item.estado
+                };
+                return (<TarjetaContenido key={item.id} objContenido={objContenido} onDelete={handleBorrar} />
+                );
+              })
             )}
           </div>
         </div>
@@ -95,11 +119,20 @@ export default function Home() {
             {porVerFiltrados.length === 0 ? (
               <p className={styles.placeholder}>No hay contenido por ver</p>
             ) : (
-              porVerFiltrados.map((item) => (
-                <div key={item.id} className={styles.itemTemp}>
-                  {item.titulo} ({item.anio})
-                </div>
-              ))
+              porVerFiltrados.map((item) => {
+                const objContenido = {
+                  id: item.id,
+                  titulo: item.titulo,
+                  anio: item.anio,
+                  director: item.director,
+                  genero: item.genero,
+                  rating: item.rating,
+                  tipo: item.tipo,
+                  estado: item.estado
+                };
+                return (<TarjetaContenido key={item.id} objContenido={objContenido} onDelete={handleBorrar} />
+                );
+              })
             )}
           </div>
         </div>
