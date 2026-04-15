@@ -6,16 +6,40 @@ import BarraBusqueda from "../../Components/BarraBusqueda/BarraBusqueda";
 import Contador from "../../Components/Contador/Contador";
 import TarjetaContenido from "../../Components/TarjetaContenido/TarjetaContenido";
 import useLocalStorage from "../../hooks/useLocalStorage";
+import Filtro from "../../Components/Filtro/Filtro";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [vistas, setVistas] = useLocalStorage("lista-vistas", []);
   const [porVer, setPorVer] = useLocalStorage("lista-por-ver", []);
+  
+  const [generosSeleccionados, setGenerosSeleccionados] = useState([]); // Array vacío al inicio
+
+// Home.jsx
+const [tiposSeleccionados, setTiposSeleccionados] = useState([]); // ["Pelicula", "Serie"]
+
+const handleToggleTipo = (tipo) => {
+  setTiposSeleccionados((prev) =>
+    prev.includes(tipo)
+      ? prev.filter((t) => t !== tipo)
+      : [...prev, tipo]
+  );
+};
+
+// Función para agregar o quitar géneros del array
+const handleToggleGenero = (genero) => {
+  setGenerosSeleccionados((prev) =>
+    prev.includes(genero)
+      ? prev.filter((g) => g !== genero) // Si ya estaba, lo saco
+      : [...prev, genero]               // Si no estaba, lo agrego
+  );
+};
 
   const handleBorrar = (id, estado) => {
     const confirmed = window.confirm('¿Seguro que querés eliminar este elemento?');
     if (!confirmed) return;
+
 
     if (estado === "vista") {
     // Filtramos la lista de 'vistas'
@@ -35,13 +59,27 @@ export default function Home() {
     }
   };
 
+
   const filtrarItems = (lista) => {
-    return lista.filter(
-      (item) =>
-        item.titulo.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.director.toLowerCase().includes(searchQuery.toLowerCase()),
-    );
-  };
+  return lista.filter((item) => {
+    // 1. Filtro Texto
+    const coincideTexto = 
+      item.titulo.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.director.toLowerCase().includes(searchQuery.toLowerCase());
+
+    // 2. Filtro Género
+    const coincideGenero = 
+      generosSeleccionados.length === 0 || 
+      generosSeleccionados.includes(item.genero);
+
+    // 3. Filtro Tipo (AQUÍ LO NUEVO)
+    const coincideTipo = 
+      tiposSeleccionados.length === 0 || 
+      tiposSeleccionados.includes(item.tipo);
+
+    return coincideTexto && coincideGenero && coincideTipo;
+  });
+};
 
   const vistasFiltradas = filtrarItems(vistas);
   const porVerFiltrados = filtrarItems(porVer);
@@ -56,29 +94,15 @@ export default function Home() {
           title="Agregar nuevo ítem"
         />
 
-        <div className={styles.searchWrapper}>
-          <BarraBusqueda onSearch={(q) => setSearchQuery(q)} />
-        </div>
-
-        <Boton
-          texto={
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-            </svg>
-          }
-          className={styles.btnIcono}
-          title="Filtros"
+        <Filtro 
+          onToggleGenero={handleToggleGenero} 
+          seleccionados={generosSeleccionados}
+          onToggleTipo={handleToggleTipo}       // Nueva prop
+          tiposSeleccionados={tiposSeleccionados} // Nueva prop
+          setSearchQuery={setSearchQuery}
         />
+
+        
       </div>
       <div className={styles.board}>
         {/* Columna de Vistas */}

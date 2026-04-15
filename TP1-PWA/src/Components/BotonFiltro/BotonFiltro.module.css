@@ -1,0 +1,23 @@
+.btnFiltro {
+  display: inline-block;
+  background-color: #e0e0e0;
+  border: 1px solid #007bff;
+  border-radius: 20px;
+  padding: 4px 12px;
+  margin: 5px;
+  transition: all 0.3s ease; 
+  color: #007bff;
+  cursor: pointer; /* Lo movemos aquí para que siempre sea puntero */
+}
+
+.btnFiltro:hover {
+  background-color: #007bff;
+  color: #e0e0e0;
+}
+
+/* Esta es la nueva clase que se aplica al hacer click */
+.btnSeleccionado {
+  background-color: #0059dd; /* Color azul fijo */
+  color: white;              /* Texto blanco fijo */
+  border-color: #555555;     /* Un borde un poco más oscuro si quieres */
+}
