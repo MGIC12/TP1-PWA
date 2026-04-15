@@ -5,7 +5,7 @@ import BarraBusqueda from '../BarraBusqueda/BarraBusqueda'
 import BotonFiltro from '../BotonFiltro/BotonFiltro'
 
 export default function Filtro({ onToggleGenero, seleccionados, onToggleTipo, tiposSeleccionados, setSearchQuery }) {
-  const tipos = ["Película", "Serie"];
+  const tipos = ["pelicula", "serie"];
   const generos = ["Accion", "Comedia", "Drama", "Ciencia Ficcion", "Terror"];
 
   return (
