@@ -10,6 +10,7 @@ import useLocalStorage from "../../Hooks/useLocalStorage";
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [itemAEditar, setItemAEditar] = useState(null);
   const [vistas, setVistas] = useLocalStorage("lista-vistas", []);
   const [porVer, setPorVer] = useLocalStorage("lista-por-ver", []);
 
@@ -28,12 +29,49 @@ export default function Home() {
     }
   };
 
-  const handleGuardarItem = (nuevoItem) => {
-    if (nuevoItem.estado === "vista") {
-      setVistas([...vistas, nuevoItem]);
+  const handleCambiarEstado = (id, estado) => {
+    if (estado === "vista") {
+      // Se busca el ítem y nos aseguramos de que exista
+      const itemEncontrado = vistas.find((item) => item.id === id);
+      if (!itemEncontrado) return; // Si no lo encuentra, corta acá
+
+      // Si lo encuentra, lo borramos de la lista vieja
+      setVistas((prev) => prev.filter((item) => item.id !== id));
+
+      // Lo agregamos a la nueva, PERO actualizando su estado a "por-ver"
+      setPorVer((prev) => [...prev, { ...itemEncontrado, estado: "por-ver" }]);
     } else {
-      setPorVer([...porVer, nuevoItem]);
+      // Buscamos en la otra lista
+      const itemEncontrado = porVer.find((item) => item.id === id);
+      if (!itemEncontrado) return;
+
+      // Lo borramos
+      setPorVer((prev) => prev.filter((item) => item.id !== id));
+
+      // Lo agregamos, actualizando su estado a "vista"
+      setVistas((prev) => [...prev, { ...itemEncontrado, estado: "vista" }]);
     }
+  };
+
+  const handleGuardarItem = (datosForm) => {
+    const idItem = itemAEditar ? itemAEditar.id : Date.now();
+    const itemProcesado = { ...datosForm, id: idItem };
+
+    // Limpiamos el ítem viejo de ambas listas por si lo modificó
+    const vistasLimpias = vistas.filter((i) => i.id !== idItem);
+    const porVerLimpias = porVer.filter((i) => i.id !== idItem);
+
+    if (itemProcesado.estado === "vista") {
+      setVistas([...vistasLimpias, itemProcesado]);
+      setPorVer(porVerLimpias);
+    } else {
+      setPorVer([...porVerLimpias, itemProcesado]);
+      setVistas(vistasLimpias);
+    }
+
+    // Cerramos el modal limpiando el estado
+    setItemAEditar(null);
+    setIsModalOpen(false);
   };
 
   const filtrarItems = (lista) => {
@@ -42,6 +80,16 @@ export default function Home() {
         item.titulo.toLowerCase().includes(searchQuery.toLowerCase()) ||
         item.director.toLowerCase().includes(searchQuery.toLowerCase()),
     );
+  };
+
+  const abrirModalNuevo = () => {
+    setItemAEditar(null);
+    setIsModalOpen(true);
+  };
+
+  const handleEditar = (item) => {
+    setItemAEditar(item);
+    setIsModalOpen(true);
   };
 
   const vistasFiltradas = filtrarItems(vistas);
@@ -53,7 +101,7 @@ export default function Home() {
         <Boton
           texto="+"
           className={styles.btnIcono}
-          onClick={() => setIsModalOpen(true)}
+          onClick={abrirModalNuevo}
           title="Agregar nuevo ítem"
         />
 
@@ -108,6 +156,8 @@ export default function Home() {
                     key={item.id}
                     objContenido={objContenido}
                     onDelete={handleBorrar}
+                    onEdit={handleEditar}
+                    onCambiarEstado={handleCambiarEstado}
                   />
                 );
               })
@@ -141,6 +191,8 @@ export default function Home() {
                     key={item.id}
                     objContenido={objContenido}
                     onDelete={handleBorrar}
+                    onEdit={handleEditar}
+                    onCambiarEstado={handleCambiarEstado}
                   />
                 );
               })
@@ -151,8 +203,12 @@ export default function Home() {
 
       <Modal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={() => {
+          setIsModalOpen(false);
+          setItemAEditar(null);
+        }}
         onSave={handleGuardarItem}
+        itemEditando={itemAEditar}
       />
     </div>
   );
