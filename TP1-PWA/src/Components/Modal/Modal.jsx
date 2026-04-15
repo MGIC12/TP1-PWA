@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Modal.module.css";
 import Boton from "../Boton/Boton";
 
-export default function Modal({ isOpen, onClose, onSave }) {
+export default function Modal({ isOpen, onClose, onSave, itemEditando }) {
   if (!isOpen) return null;
 
   const handleSubmit = (e) => {
@@ -10,7 +10,8 @@ export default function Modal({ isOpen, onClose, onSave }) {
     const formData = new FormData(e.target);
     const nuevoItem = Object.fromEntries(formData.entries());
 
-    nuevoItem.id = Date.now();
+    // 1. SOLUCIÓN AL ID: Conservamos el original si estamos editando
+    nuevoItem.id = itemEditando ? itemEditando.id : Date.now();
 
     onSave(nuevoItem);
     onClose();
@@ -23,15 +24,22 @@ export default function Modal({ isOpen, onClose, onSave }) {
           &times;
         </button>
 
-        <h2>Nuevo Ítem</h2>
+        {/* Cambia el título dependiendo de la acción */}
+        <h2>{itemEditando ? "Editar Ítem" : "Nuevo Ítem"}</h2>
 
-        <form className={styles.form} onSubmit={handleSubmit}>
+        {/* 2. LA KEY ES VITAL: Fuerza a React a recargar los inputs si cambias de película */}
+        <form
+          key={itemEditando ? itemEditando.id : "nuevo"}
+          className={styles.form}
+          onSubmit={handleSubmit}
+        >
           <label>
             Título:
             <input
               type="text"
               name="titulo"
               placeholder="Ej: Matrix"
+              defaultValue={itemEditando?.titulo || ""}
               required
             />
           </label>
@@ -42,6 +50,7 @@ export default function Modal({ isOpen, onClose, onSave }) {
               type="text"
               name="director"
               placeholder="Ej: Hermanas Wachowski"
+              defaultValue={itemEditando?.director || ""}
               required
             />
           </label>
@@ -54,6 +63,7 @@ export default function Modal({ isOpen, onClose, onSave }) {
                 name="anio"
                 min="1888"
                 placeholder="Ej: 1999"
+                defaultValue={itemEditando?.anio || ""}
                 required
               />
             </label>
@@ -66,6 +76,7 @@ export default function Modal({ isOpen, onClose, onSave }) {
                 min="1"
                 max="10"
                 placeholder="1-10"
+                defaultValue={itemEditando?.rating || ""}
                 required
               />
             </label>
@@ -73,7 +84,11 @@ export default function Modal({ isOpen, onClose, onSave }) {
 
           <label>
             Género:
-            <select name="genero" required defaultValue="">
+            <select
+              name="genero"
+              required
+              defaultValue={itemEditando?.genero || ""}
+            >
               <option value="" disabled>
                 Seleccione...
               </option>
@@ -88,7 +103,10 @@ export default function Modal({ isOpen, onClose, onSave }) {
           <div className={styles.row}>
             <label style={{ flex: 1 }}>
               Tipo:
-              <select name="tipo">
+              <select
+                name="tipo"
+                defaultValue={itemEditando?.tipo || "pelicula"}
+              >
                 <option value="pelicula">Película</option>
                 <option value="serie">Serie</option>
               </select>
@@ -96,7 +114,11 @@ export default function Modal({ isOpen, onClose, onSave }) {
 
             <label style={{ flex: 1 }}>
               Estado:
-              <select name="estado" required defaultValue="por-ver">
+              <select
+                name="estado"
+                required
+                defaultValue={itemEditando?.estado || "por-ver"}
+              >
                 <option value="vista">Ya la vi (Vistas)</option>
                 <option value="por-ver">Quiero verla (Por Ver)</option>
               </select>
@@ -105,7 +127,7 @@ export default function Modal({ isOpen, onClose, onSave }) {
 
           <div className={styles.buttonContainer}>
             <Boton
-              texto={"Guardar"}
+              texto={itemEditando ? "Actualizar" : "Guardar"}
               className={styles.botonDelModal}
               type="submit"
             />

@@ -6,7 +6,7 @@ import Boton from "../Boton/Boton";
 export default function TarjetaContenido({
   objContenido,
   onDelete,
-  //   onEdit,
+  onEdit,
   onCambiarEstado,
 }) {
   const estado = objContenido.estado; // "vista" o "por-ver"
@@ -41,7 +41,7 @@ export default function TarjetaContenido({
 
           <Boton
             className={styles.btnEditar}
-            // onClick={() => onEdit(objContenido)}
+            onClick={() => onEdit(objContenido)}
           />
 
           <Boton
