@@ -10,7 +10,6 @@ export default function Modal({ isOpen, onClose, onSave, itemEditando }) {
     const formData = new FormData(e.target);
     const nuevoItem = Object.fromEntries(formData.entries());
 
-    // 1. SOLUCIÓN AL ID: Conservamos el original si estamos editando
     nuevoItem.id = itemEditando ? itemEditando.id : Date.now();
 
     onSave(nuevoItem);
@@ -27,7 +26,7 @@ export default function Modal({ isOpen, onClose, onSave, itemEditando }) {
         {/* Cambia el título dependiendo de la acción */}
         <h2>{itemEditando ? "Editar Ítem" : "Nuevo Ítem"}</h2>
 
-        {/* 2. LA KEY ES VITAL: Fuerza a React a recargar los inputs si cambias de película */}
+        {/* Fuerza a React a recargar los inputs si cambia el item */}
         <form
           key={itemEditando ? itemEditando.id : "nuevo"}
           className={styles.form}
