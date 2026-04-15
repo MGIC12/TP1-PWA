@@ -28,6 +28,30 @@ export default function Home() {
     }
   };
 
+  const handleCambiarEstado = (id, estado) => {
+    if (estado === "vista") {
+      // Se busca el ítem y nos aseguramos de que exista
+      const itemEncontrado = vistas.find((item) => item.id === id);
+      if (!itemEncontrado) return; // Si no lo encuentra, corta acá
+
+      // Si lo encuentra, lo borramos de la lista vieja
+      setVistas((prev) => prev.filter((item) => item.id !== id));
+
+      // Lo agregamos a la nueva, PERO actualizando su estado a "por-ver"
+      setPorVer((prev) => [...prev, { ...itemEncontrado, estado: "por-ver" }]);
+    } else {
+      // Buscamos en la otra lista
+      const itemEncontrado = porVer.find((item) => item.id === id);
+      if (!itemEncontrado) return;
+
+      // Lo borramos
+      setPorVer((prev) => prev.filter((item) => item.id !== id));
+
+      // Lo agregamos, actualizando su estado a "vista"
+      setVistas((prev) => [...prev, { ...itemEncontrado, estado: "vista" }]);
+    }
+  };
+
   const handleGuardarItem = (nuevoItem) => {
     if (nuevoItem.estado === "vista") {
       setVistas([...vistas, nuevoItem]);
@@ -108,6 +132,7 @@ export default function Home() {
                     key={item.id}
                     objContenido={objContenido}
                     onDelete={handleBorrar}
+                    onCambiarEstado={handleCambiarEstado}
                   />
                 );
               })
@@ -141,6 +166,7 @@ export default function Home() {
                     key={item.id}
                     objContenido={objContenido}
                     onDelete={handleBorrar}
+                    onCambiarEstado={handleCambiarEstado}
                   />
                 );
               })
