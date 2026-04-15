@@ -5,7 +5,7 @@ import Boton from "../../Components/Boton/Boton";
 import BarraBusqueda from "../../Components/BarraBusqueda/BarraBusqueda";
 import Contador from "../../Components/Contador/Contador";
 import TarjetaContenido from "../../Components/TarjetaContenido/TarjetaContenido";
-import useLocalStorage from "../../hooks/useLocalStorage";
+import useLocalStorage from "../../Hooks/useLocalStorage";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,18 +14,19 @@ export default function Home() {
   const [porVer, setPorVer] = useLocalStorage("lista-por-ver", []);
 
   const handleBorrar = (id, estado) => {
-    const confirmed = window.confirm('¿Seguro que querés eliminar este elemento?');
+    const confirmed = window.confirm(
+      "¿Seguro que querés eliminar este elemento?",
+    );
     if (!confirmed) return;
 
     if (estado === "vista") {
-    // Filtramos la lista de 'vistas'
-    setVistas((prev) => prev.filter((item) => item.id !== id));
-  } else {
-    // Filtramos la lista de 'por ver'
-    setPorVer((prev) => prev.filter((item) => item.id !== id));
-  }
+      // Filtramos la lista de 'vistas'
+      setVistas((prev) => prev.filter((item) => item.id !== id));
+    } else {
+      // Filtramos la lista de 'por ver'
+      setPorVer((prev) => prev.filter((item) => item.id !== id));
+    }
   };
-
 
   const handleGuardarItem = (nuevoItem) => {
     if (nuevoItem.estado === "vista") {
@@ -100,9 +101,14 @@ export default function Home() {
                   genero: item.genero,
                   rating: item.rating,
                   tipo: item.tipo,
-                  estado: item.estado
+                  estado: item.estado,
                 };
-                return (<TarjetaContenido key={item.id} objContenido={objContenido} onDelete={handleBorrar} />
+                return (
+                  <TarjetaContenido
+                    key={item.id}
+                    objContenido={objContenido}
+                    onDelete={handleBorrar}
+                  />
                 );
               })
             )}
@@ -128,9 +134,14 @@ export default function Home() {
                   genero: item.genero,
                   rating: item.rating,
                   tipo: item.tipo,
-                  estado: item.estado
+                  estado: item.estado,
                 };
-                return (<TarjetaContenido key={item.id} objContenido={objContenido} onDelete={handleBorrar} />
+                return (
+                  <TarjetaContenido
+                    key={item.id}
+                    objContenido={objContenido}
+                    onDelete={handleBorrar}
+                  />
                 );
               })
             )}
