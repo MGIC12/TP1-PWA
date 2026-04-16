@@ -1,31 +1,28 @@
-/* Etiqueta.module.css */
-
 .etiqueta {
-  display: inline-block;        /* Para que el ancho se ajuste al texto */
-  background-color: #e0e0e0;    /* Un azul muy suave */
-  border: 1px solid #007bff;    /* Un borde azul más intenso */
-  border-radius: 20px;          /* Bordes bien redondeados (estilo píldora) */
-  padding: 4px 12px;            /* Espaciado interno */
-  margin: 5px;                  /* Espaciado externo */
-  transition: all 0.3s ease;    /* Animación suave para el hover */
+  display: inline-block;
+  background-color: rgba(
+    51,
+    65,
+    85,
+    0.6
+  ); /* Un toque más opaco para que resalte */
+  border: 1px solid #64748b; /* Borde un poco más claro para enmarcarla mejor */
+  border-radius: 8px; /* Bordes un poco más suaves */
+  padding: 6px 14px; /* Más espacio interno (antes era 4px 10px) */
+  transition: all 0.2s ease;
 }
 
 .etiqueta p {
-  margin: 0;                    /* Quitamos el margen por defecto del <p> */
-  color: #007bff;               /* Texto en azul oscuro */
-  font-family: sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;    /* Texto en mayúsculas para darle estilo */
-  letter-spacing: 0.5px;
+  margin: 0;
+  color: #f8fafc; /* Texto casi blanco para excelente legibilidad */
+  font-size: 0.85rem; /* Letra más grande (antes era 0.75rem) */
+  font-weight: 500;
+  letter-spacing: 0.5px; /* Un micro-espacio entre letras que da aspecto Premium */
+  text-transform: uppercase; /* Volvemos a las mayúsculas para que parezcan verdaderas etiquetas */
 }
 
-/* Efecto opcional para cuando pases el mouse */
+/* Pequeño efecto al pasar el mouse por si en el futuro querés hacerlas clickeables */
 .etiqueta:hover {
-  background-color: #007bff;
-  cursor: pointer;
-}
-
-.etiqueta:hover p {
-  color: white;
+  background-color: rgba(51, 65, 85, 0.9);
+  border-color: #94a3b8;
 }

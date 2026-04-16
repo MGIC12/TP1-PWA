@@ -1,66 +1,34 @@
-.filtro{
+.filtro {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
   width: 100%;
 }
 .searchWrapper {
   flex: 1;
   min-width: 0;
 }
-
-.form{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-}
-.btnsTipo{
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-.btnsGenero{
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-.divider{
-    width: 2px;
-    height: 25px;
-    background-color: black;
-    color: black;
-}
-.btnFiltro {
-  display: inline-block;        /* Para que el ancho se ajuste al texto */
-  background-color: #e0e0e0;    /* Un azul muy suave */
-  border: 1px solid #007bff;    /* Un borde azul más intenso */
-  border-radius: 20px;          /* Bordes bien redondeados (estilo píldora) */
-  padding: 4px 12px;            /* Espaciado interno */
-  margin: 5px;                  /* Espaciado externo */
-  transition: all 0.3s ease; 
-  color: #007bff;
-}
-.btnFiltro:hover {
-    background-color: #007bff;
-    cursor: pointer;
-    color: #e0e0e0;
-}
-
-/* Botón con estilo de ícono cuadrado */
-.btnIcono {
-  padding: 10px 14px !important;
-  font-size: 1.2rem !important;
-  background-color: transparent !important;
-  color: #333 !important;
-  border: 1px solid #ccc !important;
-  border-radius: 8px !important;
+.btnsTipo,
+.btnsGenero {
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex-shrink: 0;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.divider {
+  width: 1px;
+  height: 35px;
+  background-color: #334155;
+  border-radius: 2px;
 }
 
-.btnIcono:hover {
-  background-color: #f0f0f0 !important;
+@media (max-width: 1000px) {
+  .filtro {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .divider {
+    width: 100%;
+    height: 1px;
+  }
 }
