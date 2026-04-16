@@ -1,23 +1,23 @@
 .btnFiltro {
-  display: inline-block;
-  background-color: #e0e0e0;
-  border: 1px solid #007bff;
+  background-color: transparent;
+  border: 1px solid #475569;
   border-radius: 20px;
-  padding: 4px 12px;
-  margin: 5px;
-  transition: all 0.3s ease; 
-  color: #007bff;
-  cursor: pointer; /* Lo movemos aquí para que siempre sea puntero */
+  padding: 6px 14px;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .btnFiltro:hover {
-  background-color: #007bff;
-  color: #e0e0e0;
+  border-color: #3b82f6;
+  color: #f8fafc;
 }
 
-/* Esta es la nueva clase que se aplica al hacer click */
 .btnSeleccionado {
-  background-color: #0059dd; /* Color azul fijo */
-  color: white;              /* Texto blanco fijo */
-  border-color: #555555;     /* Un borde un poco más oscuro si quieres */
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
 }
