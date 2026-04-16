@@ -3,10 +3,54 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 html {
   scroll-behavior: smooth;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
 }
 
+body {
+  background-color: #0f172a; /* Azul noche muy oscuro y elegante */
+  color: #f8fafc; /* Texto casi blanco */
+  min-height: 100vh;
+}
+
+/* Personalizar la barra de desplazamiento (Scrollbar) para que sea oscura */
+body::-webkit-scrollbar {
+  width: 10px;
+}
+body::-webkit-scrollbar-track {
+  background: #0f172a;
+}
 body::-webkit-scrollbar-thumb {
+  background: #334155;
   border-radius: 5px;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Estilos elegantes para los títulos de tu App.jsx */
+h1 {
+  text-align: center;
+  margin-top: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: #f8fafc;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  color: #3b82f6; /* Nuevo Azul Zafiro */
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 500;
 }
