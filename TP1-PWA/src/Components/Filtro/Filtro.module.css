@@ -64,3 +64,19 @@
 .btnIcono:hover {
   background-color: #f0f0f0 !important;
 }
+
+.selectOrden {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: white;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.orderWrapper {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}

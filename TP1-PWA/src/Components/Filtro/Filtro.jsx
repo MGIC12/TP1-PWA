@@ -4,7 +4,7 @@ import Boton from '../Boton/Boton'
 import BarraBusqueda from '../BarraBusqueda/BarraBusqueda'
 import BotonFiltro from '../BotonFiltro/BotonFiltro'
 
-export default function Filtro({ onToggleGenero, seleccionados, onToggleTipo, tiposSeleccionados, setSearchQuery }) {
+export default function Filtro({ onToggleGenero, seleccionados, onToggleTipo, tiposSeleccionados, setSearchQuery, setOrden, ordenActual }) {
   const tipos = ["pelicula", "serie"];
   const generos = ["Accion", "Comedia", "Drama", "Ciencia Ficcion", "Terror"];
 
@@ -34,6 +34,23 @@ export default function Filtro({ onToggleGenero, seleccionados, onToggleTipo, ti
           />
         ))}
       </div>
+
+      <div className={styles.orderWrapper}>
+        <label htmlFor="orden">Ordenar por: </label>
+        <select 
+          id="orden"
+          className={styles.selectOrden} 
+          value={ordenActual} 
+          onChange={(e) => setOrden(e.target.value)}
+        >
+          <option value="abc">Abecedario (A-Z)</option>
+          <option value="anio-asc">Año (Más antiguo)</option>
+          <option value="anio-desc">Año (Más reciente)</option>
+          <option value="rating-asc">Rating (Menor a mayor)</option>
+          <option value="rating-desc">Rating (Mayor a menor)</option>
+        </select>
+      </div>
+      
     </div>
   );
 }
