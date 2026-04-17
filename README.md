@@ -34,7 +34,7 @@ Se hace uso de npm, ejecutando en el intérprete de comandos lo siguiente:
 
 ```bash
   npm install
-  cd TP1-PWA/
+  cd TP1-PWA/TP1-PWA/
 ```
 
 ## Ejecución del proyecto en un servidor local:
@@ -46,3 +46,10 @@ Se ejecuta en el intérprete de comandos lo siguiente:
 ```bash
   npm run dev
 ```
+## Screenshots
+### Fase Inicial: <img width="2559" height="905" alt="vbeta" src="https://github.com/user-attachments/assets/6e9556fb-79a6-41d6-a6df-5cf005393f3b" />
+
+### Fase Intermedia: <img width="2559" height="922" alt="vbeta2" src="https://github.com/user-attachments/assets/50372e86-8c6e-49ac-b265-1372b2b42efc" />
+
+### Fase Final: <img width="1192" height="768" alt="vfinal" src="https://github.com/user-attachments/assets/60677cd9-3d25-4cc5-952a-f0c07a74bf9b" />
+
