@@ -15,6 +15,25 @@ export default function Home() {
   const [itemAEditar, setItemAEditar] = useState(null);
   const [vistas, setVistas] = useLocalStorage("lista-vistas", []);
   const [porVer, setPorVer] = useLocalStorage("lista-por-ver", []);
+  const [orden, setOrden] = useState("abc"); // "abc" será el valor por defecto
+
+  const ordenarItems = (lista) => {
+  const listaCopiada = [...lista]; 
+  
+  switch (orden) {
+    case "anio-asc":
+      return listaCopiada.sort((a, b) => a.anio - b.anio);
+    case "anio-desc":
+      return listaCopiada.sort((a, b) => b.anio - a.anio);
+    case "rating-asc":
+      return listaCopiada.sort((a, b) => a.rating - b.rating);
+    case "rating-desc":
+      return listaCopiada.sort((a, b) => b.rating - a.rating);
+    case "abc":
+    default:
+      return listaCopiada.sort((a, b) => a.titulo.localeCompare(b.titulo));
+  }
+};
 
   const handleBorrar = (id, estado) => {
     const confirmed = window.confirm(
@@ -107,6 +126,8 @@ export default function Home() {
     setIsModalOpen(true);
   };
 
+  
+
   const [generosSeleccionados, setGenerosSeleccionados] = useState([]); // Array vacío al inicio
 
   const [tiposSeleccionados, setTiposSeleccionados] = useState([]); // ["Pelicula", "Serie"]
@@ -127,8 +148,8 @@ export default function Home() {
     );
   };
 
-  const vistasFiltradas = filtrarItems(vistas);
-  const porVerFiltrados = filtrarItems(porVer);
+  const vistasFiltradas = ordenarItems(filtrarItems(vistas));
+  const porVerFiltrados = ordenarItems(filtrarItems(porVer));
 
   return (
     <div className={styles.homeContainer}>
@@ -143,9 +164,11 @@ export default function Home() {
         <Filtro
           onToggleGenero={handleToggleGenero}
           seleccionados={generosSeleccionados}
-          onToggleTipo={handleToggleTipo} // Nueva prop
-          tiposSeleccionados={tiposSeleccionados} // Nueva prop
+          onToggleTipo={handleToggleTipo}
+          tiposSeleccionados={tiposSeleccionados}
           setSearchQuery={setSearchQuery}
+          setOrden={setOrden} // Pasamos la función para cambiar el orden
+          ordenActual={orden}
         />
       </div>
       <div className={styles.board}>
